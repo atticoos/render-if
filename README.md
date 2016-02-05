@@ -1,8 +1,13 @@
 # render-if
-A conveniently curry way to render conditional React components.
+A tiny, yet conveniently curry way to render conditional React components. Work great with both React and React Native.
 
 ```js
 renderIf(predicate)(element)
+```
+```js
+renderIf(1 + 1 === 2)(
+  <Text>Hello World!</Text>
+)
 ```
 
 
