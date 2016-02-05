@@ -1,0 +1,24 @@
+{
+  "name": "render-if",
+  "version": "1.0.0",
+  "description": "Convenient way to render React components",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ajwhite/render-if.git"
+  },
+  "keywords": [
+    "react",
+    "react-native",
+    "render"
+  ],
+  "author": "Atticus White <contact@atticuswhite.com> (http://atticuswhite.com/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ajwhite/render-if/issues"
+  },
+  "homepage": "https://github.com/ajwhite/render-if#readme"
+}
