@@ -1,8 +1,8 @@
 # render-if
-A convenient way to render conditional React components.
+A conveniently curry way to render conditional React components.
 
 ```js
-renderIf(element, predicate)
+renderIf(predicate)(element)
 ```
 
 
@@ -11,17 +11,21 @@ renderIf(element, predicate)
 ```jsx
 import renderIf from 'render-if';
 
+const ifUniverseIsWorking = renderIf(1 + 2 === 2);
+
 class MyComponent extends Component {
   render() {
     <div>
-      {renderIf(
-        <span>I am rendered!</span>,
-        1 + 1 === 2
+      {renderIf(1 + 1 === 2)(
+        <span>I am rendered!</span>
       )}
 
-      {renderIf(
-        <span>I am not rendered :(</span>,
-        false
+      {renderIf(false)(
+        <span>I am not rendered :(</span>
+      )}
+
+      {ifUniverseIsWorking(
+        <span>I am rendered!</span>
       )}
     </div>
   }

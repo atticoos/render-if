@@ -1,6 +1,8 @@
-module.exports = function (element, predicate) {
-  if (predicate) {
-    return element;
+module.exports = function (predicate) {
+  return function (element) {
+    if (predicate) {
+      return element;
+    }
+    return null;
   }
-  return null;
 }
