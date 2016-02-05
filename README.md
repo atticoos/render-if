@@ -1,46 +1,71 @@
 # render-if
-A tiny, yet conveniently curry way to render conditional React components. Work great with both React and React Native.
+A tiny, yet conveniently curried way to render conditional React components. Work great with both React and React Native.
 
 ```js
 renderIf(predicate)(element)
 ```
+
+
+
+## What it looks like
+
+`renderIf` is a curried function that takes a predicate and returns a function accepting an element that will only be returned if the predicate is satisfied.
+
 ```js
 renderIf(1 + 1 === 2)(
   <Text>Hello World!</Text>
 )
 ```
 
-
-### What it looks like
+### As an in-line expression
 
 ```jsx
-import renderIf from 'render-if';
-
-const ifUniverseIsWorking = renderIf(1 + 1 === 2);
-
 class MyComponent extends Component {
   render() {
     return (
-      <div>
-        {renderIf(1 + 1 === 2)(
-          <span>I am rendered!</span>
-        )}
-
-        {renderIf(false)(
-          <span>I am not rendered :(</span>
-        )}
-
-        {ifUniverseIsWorking(
-          <span>I am rendered!</span>
-        )}
-      </div>
+      {renderIf(1 + 2 === 3)(
+        <span>The universe is working</span>
+      )}
     );
   }
 }
 ```
 
+### As a named function
 
-### What it no longer looks like
+```jsx
+class MyComponent extends Component {
+  render() {
+    const ifTheUniverseIsWorking = renderIf(1 + 2 === 3);
+    return (
+      {ifTheUniverseIsWorking(
+        <span>The universe is still wroking</span>
+      )}
+    )
+  }
+}
+```
+
+### As a composed function
+```jsx
+const ifEven = number => renderIf(number % 2 === 0);
+const ifOdd = number => renderIf(number % 2 !== 0);
+
+class MyComponent extends Component {
+  render() {
+    return (
+      {ifEven(this.props.count)(
+        <span>{this.props.count} is even</span>
+      )}
+      {ifOdd(this.props.count)(
+        <span>{this.props.count} is odd</span>
+      )}
+    );
+  }
+}
+```
+
+## What it no longer looks like
 
 ```jsx
 class MyComponent extends Component {
