@@ -11,7 +11,7 @@ renderIf(predicate)(element)
 ```jsx
 import renderIf from 'render-if';
 
-const ifUniverseIsWorking = renderIf(1 + 2 === 2);
+const ifUniverseIsWorking = renderIf(1 + 1 === 2);
 
 class MyComponent extends Component {
   render() {
