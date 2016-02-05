@@ -1,3 +1,3 @@
 'use strict';
 
-export default (predicate) => element => predicate && element;
+export default predicate => element => predicate && element;
