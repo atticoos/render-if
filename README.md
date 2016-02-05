@@ -20,19 +20,21 @@ const ifUniverseIsWorking = renderIf(1 + 1 === 2);
 
 class MyComponent extends Component {
   render() {
-    <div>
-      {renderIf(1 + 1 === 2)(
-        <span>I am rendered!</span>
-      )}
+    return (
+      <div>
+        {renderIf(1 + 1 === 2)(
+          <span>I am rendered!</span>
+        )}
 
-      {renderIf(false)(
-        <span>I am not rendered :(</span>
-      )}
+        {renderIf(false)(
+          <span>I am not rendered :(</span>
+        )}
 
-      {ifUniverseIsWorking(
-        <span>I am rendered!</span>
-      )}
-    </div>
+        {ifUniverseIsWorking(
+          <span>I am rendered!</span>
+        )}
+      </div>
+    );
   }
 }
 ```
@@ -43,15 +45,24 @@ class MyComponent extends Component {
 ```jsx
 class MyComponent extends Component {
   render() {
-    <div>
-      <!-- this works, but it can get ugly -->
-      {1 + 1 === 2 && <span>I am rendered!</span>}
-      {this.anotherConditionalRender()}
-    </div>
+    var conditionalOutput;
+    if (1 + 1 === 2) {
+      conditionalOutput = <span>I am rendered!</span>;
+    } else {
+      conditionalOutput = <span>I am not rendered :(</span>;
+    }
+    return (
+      <div>
+        <!-- this works, but it can get ugly -->
+        {conditionalOutput}
+        {1 + 1 === 2 && <span>I am rendered!</span>}
+        {this.anotherConditionalRender()}
+      </div>
+    );
   }
   anotherConditionalRender() {
-    if (false) {
-      return <span>I am not rendered :(</span>
+    if (1 + 1 === 2) {
+      return <span>I am rendered!</span>
     }
   }
 }
