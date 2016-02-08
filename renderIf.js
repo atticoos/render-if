@@ -1,3 +1,6 @@
 'use strict';
 
-export default predicate => element => predicate && element;
+const isFunction = input => typeof input === 'function';
+
+export default predicate => elemOrThunk =>
+  predicate ? (isFunction(elemOrThunk) ? elemOrThunk() : elemOrThunk) : null;
