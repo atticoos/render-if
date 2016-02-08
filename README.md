@@ -10,6 +10,7 @@ renderIf(predicate)(element)
 ## What it looks like
 
 `renderIf` is a curried function that takes a predicate and returns a function accepting an element that will only be returned if the predicate is satisfied.
+The function returned by `renderIf` will also accept a parameterless function which will only be invoked if the predicate is satisfied, allowing for lazy evaluation of inner JSX.
 
 ```js
 renderIf(1 + 1 === 2)(
@@ -26,6 +27,20 @@ class MyComponent extends Component {
       {renderIf(1 + 2 === 3)(
         <span>The universe is working</span>
       )}
+    );
+  }
+}
+```
+
+### As a lazy in-line expression
+
+```jsx
+class MyComponent extends Component {
+  render() {
+    return (
+      {renderIf(1 + 2 === 3)(() => (
+        <span>This is only invoked if the universe is working</span>
+      ))}
     );
   }
 }
