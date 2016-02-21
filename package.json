@@ -1,6 +1,6 @@
 {
   "name": "render-if",
-  "version": "0.0.4",
+  "version": "0.1.0",
   "description": "Convenient way to render React components",
   "main": "lib/renderIf.js",
   "scripts": {
