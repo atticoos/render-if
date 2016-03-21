@@ -3,7 +3,7 @@
 [![NPM version](http://img.shields.io/npm/v/render-if.svg?style=flat)](https://npmjs.org/package/render-if)
 [![Build Status](http://img.shields.io/travis/ajwhite/render-if.svg?style=flat)](http://travis-ci.org/ajwhite/render-if)
 
-A tiny, yet conveniently curried way to render conditional React components. Work great with both React and React Native.
+A tiny, yet conveniently curried way to render conditional React components. Works great with both React and React Native.
 
 ```js
 renderIf(predicate)(element)
