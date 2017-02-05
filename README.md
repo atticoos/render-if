@@ -111,3 +111,68 @@ class MyComponent extends Component {
   }
 }
 ```
+
+## Branching
+
+`renderIf` allows flexible conditional branching by using the `or` method attached to `renderIf`. `or` will return the first value that is not null or undefined.
+
+```jsx
+const ifEven = number => renderIf(number % 2 === 0);
+
+renderIf.or(
+  ifEven(<span>Number is even!</span>),
+  <span>Number is Odd!</span>  
+);
+```
+
+Not really too exciting since you can replace the entire example with something simplier.
+
+```jsx
+{i % 2 === 0
+  ? <span>Number is even!</span>
+  : <span>Number is Odd!</span>}
+```
+
+However the above example will quickly become unmanageable when other conditions or fall throughs introduced.
+
+```jsx
+import renderIf, { or } from 'renderIf';
+
+const ifEven = number => renderIf(number % 2 === 0);
+const ifMultipleOf3 = number => renderIf(number % 3 === 0);
+
+class MyComponent extends Component {
+  render() {
+    return (
+      {or(
+        ifEven(<span>Number is even!</span>),
+        ifMultipleOf3(<span>Number is multiple of 3!</span>),
+        <span>Number is something else</span>
+      )}
+    );
+  }
+}
+```
+
+### Lazy predicates
+
+Predicates can also be functions and will be evaluated lazily.
+
+```jsx
+import renderIf, { or } from 'renderIf';
+
+const ifEven = number => renderIf(number % 2 === 0);
+const ifMultipleOf3 = number => renderIf(number % 3 === 0);
+
+class MyComponent extends Component {
+  render() {
+    return (
+      {or(
+        ifEven(<span>Number is even!</span>),
+        ifMultipleOf3(<span>Number is multiple of 3!</span>),
+        () => <span>Number is something else</span>
+      )}
+    );
+  }
+}
+```

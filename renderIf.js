@@ -2,5 +2,18 @@
 
 const isFunction = input => typeof input === 'function';
 
-export default predicate => elemOrThunk =>
-  predicate ? (isFunction(elemOrThunk) ? elemOrThunk() : elemOrThunk) : null;
+const result = (value) => isFunction(value) ? value() : value;
+
+export const or = (...elemsOrThunks) => {
+  for (let index = 0; index < elemsOrThunks.length; index++) {
+    let value = result(elemsOrThunks[index]);
+
+    if (value != null) {
+      return value;
+    }
+  }
+
+  return null;
+};
+
+export default predicate => elemOrThunk => predicate ? result(elemOrThunk) : null;
