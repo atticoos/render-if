@@ -9,6 +9,11 @@ A tiny, yet conveniently curried way to render conditional React components. Wor
 renderIf(predicate)(element)
 ```
 
+## Installation
+
+```
+npm instal render-if --save
+```
 
 
 ## What it looks like
