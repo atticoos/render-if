@@ -12,7 +12,7 @@ renderIf(predicate)(element)
 ## Installation
 
 ```
-npm instal render-if --save
+npm install render-if --save
 ```
 
 You can also install the `eslint` plugin, [eslint-plugin-render-if](https://github.com/v-technologies/eslint-plugin-render-if)
