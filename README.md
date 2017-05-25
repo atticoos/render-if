@@ -15,6 +15,7 @@ renderIf(predicate)(element)
 npm instal render-if --save
 ```
 
+You can also install the `eslint` plugin, [eslint-plugin-render-if](https://github.com/v-technologies/eslint-plugin-render-if)
 
 ## What it looks like
 
