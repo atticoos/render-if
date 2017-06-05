@@ -27,6 +27,16 @@ renderIf.multi = function () {
     }
   }
 
+  function elseCondition (elemOrThunk) {
+    cases.push({
+      priority: 2,
+      condition: true,
+      elemOrThunk
+    });
+
+    return api;
+  }
+
   function evaluate() {
     let sortedCases = cases.sort((a, b) => a.priority > b.priority);
 
@@ -45,7 +55,7 @@ renderIf.multi = function () {
   const api = {
     if: createCondition(0),
     elseIf: createCondition(1),
-    else: createCondition(2),
+    else: elseCondition,
     evaluate
   };
 
