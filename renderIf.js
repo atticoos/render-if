@@ -2,12 +2,70 @@
 
 const isFunction = input => typeof input === 'function';
 
+function renderElemOrThunk (elemOrThunk) {
+  if (isFunction(elemOrThunk)) {
+    return elemOrThunk()
+  }
+  return elemOrThunk;
+}
+
 function renderIf (predicate) {
-  return elemOrThunk => predicate ? (isFunction(elemOrThunk) ? elemOrThunk() : elemOrThunk) : null;
+  return elemOrThunk => predicate ? renderElemOrThunk(elemOrThunk) : null;
 }
 
 renderIf.if = function multiStatement (initialCondition) {
   return renderIf.multi().if(initialCondition);
+}
+
+renderIf.switch = function switchStatement (subject) {
+  const cases = [];
+
+  function switchCase (value) {
+    return function switchComponent (elemOrThunk) {
+      cases.push({
+        default: false,
+        elemOrThunk,
+        value
+      });
+
+      return api;
+    }
+  }
+
+  function switchDefault (elemOrThunk) {
+    cases.push({
+      default: true,
+      elemOrThunk
+    });
+
+    return api;
+  }
+
+  function evaluate() {
+    const sortedCase = cases.sort((a, b) => a.default && !b.default);
+
+    for (let i = 0; i < sortedCase.length; i++) {
+      const currentCase = sortedCase[i];
+
+      if (!currentCase.default) {
+        if (currentCase.value === subject) {
+          return renderElemOrThunk(currentCase.elemOrThunk);
+        }
+      } else if (currentCase.default) {
+        return renderElemOrThunk(currentCase.elemOrThunk);
+      }
+    }
+
+    return null;
+  }
+
+  const api = {
+    case: switchCase,
+    default: switchDefault,
+    evaluate
+  };
+
+  return api;
 }
 
 renderIf.multi = function () {
