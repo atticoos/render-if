@@ -37,4 +37,40 @@ describe('renderIf', () => {
       expect(spy).not.to.have.been.called;
     });
   });
+
+  describe('if/elseIf/else', () => {
+    for (let i = 1; i <= 4; i++) {
+      let result = renderIf.if(i === 1) (
+        '1'
+      ).elseIf(i === 2) (
+        '2'
+      ).elseIf(i === 3) (
+        '3'
+      ).else(
+        '4'
+      ).evaluate();
+
+      expect(result).to.be.equal(`${i}`);
+    }
+  })
+  describe('switch', () => {
+    for (let i = 1; i <= 4; i++) {
+      let result = renderIf.switch(i)
+        .case(1) (
+          '1'
+        )
+        .case(2) (
+          '2'
+        )
+        .case(3) (
+          '3'
+        )
+        .default(
+          '4'
+        )
+        .evaluate();
+
+      expect(result).to.be.eql(`${i}`);
+    }
+  })
 });
